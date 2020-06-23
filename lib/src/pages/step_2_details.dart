@@ -1,60 +1,57 @@
 import 'package:flutter/material.dart';
-import 'package:happy/src/models/variables.model.dart';
 import 'package:happy/src/widgets/card_step.widget.dart';
 
-class Step2Details extends StatefulWidget {
+import 'package:happy/src/models/step2_arguments.model.dart';
+import 'package:happy/src/models/variables.model.dart';
+
+class Step2DetailsPage extends StatefulWidget {
   @override
-  _Step2DetailsState createState() => _Step2DetailsState();
+  _Step2DetailsPageState createState() => _Step2DetailsPageState();
 }
 
-class _Step2DetailsState extends State<Step2Details> {
+class _Step2DetailsPageState extends State<Step2DetailsPage> {
   @override
   Widget build(BuildContext context) {
-    String titleSelected = ModalRoute.of(context).settings.arguments;
+    final Step2Arguments args = ModalRoute.of(context).settings.arguments;
+    print(args.title);
 
     return CardStep(
       title: "What brings you to Ten Percent?",
       percentage: 40.0,
-      onPressedContinue: () {
+      onPressedButtonFooter: () {
         Navigator.pushNamed(context, '/step/3');
       },
-      child: Expanded(
-        child: Column(
-          children: <Widget>[
-            _tableRowStep2(
-              titleSelected,
-              "Learn the basics of meditation in a simple, easy, fun away.",
-            ),
-            Expanded(
-              child: Container(),
-            ),
-          ],
+      children: [
+        _cardStep2(
+          args.title,
+          args.subtitle,
+          args.image,
         ),
-      ),
-      // child: PageView.builder(
-      //   pageSnapping: false,
-      //   controller: PageController(viewportFraction: 0.3, initialPage: 1),
-      //   itemCount: list.length,
-      //   itemBuilder: (context, i) => _tableRowStep2(list[i]),
-      // ),
+        Expanded(
+          child: Container(),
+        ),
+      ],
     );
   }
 
-  Widget _tableRowStep2(String title, String subtitle) {
+  Widget _cardStep2(String title, String subtitle, String image) {
     Widget _cardTitle = Container(
-      padding: EdgeInsets.all(32.0),
-      width: 320,
+      padding:
+          EdgeInsets.only(top: 32.0, left: 32.0, right: 32.0, bottom: 20.0),
+      width: 260,
       child: RaisedButton(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
-          side: BorderSide(color: Variables.colorPrimary, width: 4.0),
+          side: BorderSide(color: Variables.colorPrimary, width: 2.0),
         ),
-        padding:
-            EdgeInsets.only(top: 24.0, left: 24.0, right: 24.0, bottom: 32.0),
+        padding: EdgeInsets.only(
+          top: 24.0,
+          left: 24.0,
+          right: 24.0,
+          bottom: 24.0,
+        ),
         color: Variables.colorLight,
-        onPressed: () {
-          Navigator.pushNamed(context, '/step/3');
-        },
+        onPressed: () {},
         child: Column(
           children: [
             Hero(
@@ -65,7 +62,7 @@ class _Step2DetailsState extends State<Step2Details> {
                   child: AspectRatio(
                     aspectRatio: 1,
                     child: Image(
-                      image: AssetImage('assets/scroll-1.png'),
+                      image: AssetImage(image),
                       fit: BoxFit.cover, // use this
                     ),
                   ),
@@ -73,12 +70,12 @@ class _Step2DetailsState extends State<Step2Details> {
               ),
             ),
             SizedBox(
-              height: 24.0,
+              height: 12.0,
             ),
             Text(
               title,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w400),
+              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400),
             ),
           ],
         ),
@@ -93,7 +90,7 @@ class _Step2DetailsState extends State<Step2Details> {
         subtitle,
         textAlign: TextAlign.center,
         style: TextStyle(
-          fontSize: 20.0,
+          fontSize: 16.0,
           fontWeight: FontWeight.w400,
           color: Variables.colorGrey3,
         ),

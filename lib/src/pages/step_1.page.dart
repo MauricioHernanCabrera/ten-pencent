@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:happy/src/models/variables.model.dart';
 import 'package:happy/src/widgets/card_step.widget.dart';
 
-class Step1 extends StatefulWidget {
+class Step1Page extends StatefulWidget {
   @override
-  _Step1State createState() => _Step1State();
+  _Step1PageState createState() => _Step1PageState();
 }
 
-class _Step1State extends State<Step1> {
+class _Step1PageState extends State<Step1Page> {
   String step1 = "";
 
   @override
@@ -16,7 +16,7 @@ class _Step1State extends State<Step1> {
       title: "Do you meditate?",
       subtitle: "This helps us personalize your experience.",
       percentage: 20.0,
-      onPressedContinue: step1 == ""
+      onPressedButtonFooter: step1 == ""
           ? null
           : () {
               Navigator.pushNamed(context, '/step/2');
@@ -34,11 +34,11 @@ class _Step1State extends State<Step1> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          SizedBox(height: 36.0),
+          SizedBox(height: 32.0),
           _button("Nope", "nope"),
-          SizedBox(height: 38.0),
+          SizedBox(height: 24.0),
           _button("Tried It", "tried-it"),
-          SizedBox(height: 38.0),
+          SizedBox(height: 24.0),
           _button("Regularly", "regularly"),
         ],
       ),
@@ -70,10 +70,12 @@ class _Step1State extends State<Step1> {
         shape: _defineShapeButton(value),
         color: Variables.colorLight,
         textColor: Variables.colorDark,
-        padding: EdgeInsets.symmetric(vertical: 18.0),
+        padding: EdgeInsets.symmetric(vertical: 16.0),
         child: Text(
           title,
-          style: TextStyle(fontSize: 20),
+          style: TextStyle(
+            fontSize: 14,
+          ),
         ),
       ),
     );

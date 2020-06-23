@@ -5,18 +5,20 @@ import 'package:happy/src/widgets/linear_progress_bar.widget.dart';
 class CardStep extends StatelessWidget {
   final String title;
   final String subtitle;
+  final String titleButtonFooter;
   final double percentage;
   final List<Widget> children;
   final Widget child;
-  final VoidCallback onPressedContinue;
+  final VoidCallback onPressedButtonFooter;
 
   const CardStep({
     this.title,
     this.subtitle = "",
+    this.titleButtonFooter = "Continue",
     this.percentage,
     this.children,
     this.child,
-    this.onPressedContinue,
+    this.onPressedButtonFooter,
   });
 
   @override
@@ -60,7 +62,7 @@ class CardStep extends StatelessWidget {
       clipper: ClippingClass(),
       child: Container(
         width: double.infinity,
-        height: 160,
+        height: 130,
         color: Variables.colorLight,
         padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
         child: Column(
@@ -85,7 +87,7 @@ class CardStep extends StatelessWidget {
         title,
         textAlign: TextAlign.center,
         style: TextStyle(
-          fontSize: 34.0,
+          fontSize: 24.0,
           color: Variables.colorDark,
         ),
       ),
@@ -101,7 +103,7 @@ class CardStep extends StatelessWidget {
         subtitle,
         textAlign: TextAlign.center,
         style: TextStyle(
-          fontSize: 18.0,
+          fontSize: 14.0,
           color: Variables.colorDark,
         ),
       ),
@@ -113,23 +115,26 @@ class CardStep extends StatelessWidget {
       tag: "footer",
       child: Container(
         width: double.infinity,
-        height: 120,
+        height: 100,
         color: Variables.colorLight,
-        padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+        padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
         child: Column(
           children: <Widget>[
             SizedBox(
               width: double.infinity,
               child: RaisedButton(
-                onPressed: onPressedContinue,
+                onPressed: onPressedButtonFooter,
                 color: Variables.colorPrimary,
                 textColor: Colors.white,
-                padding: EdgeInsets.symmetric(vertical: 6.0),
+                disabledColor: Variables.colorDisableButton,
+                padding: EdgeInsets.symmetric(vertical: 0.0),
                 child: Container(
-                  padding: EdgeInsets.all(10.0),
+                  padding: EdgeInsets.all(14.0),
                   child: Text(
-                    'Continue',
-                    style: TextStyle(fontSize: 20),
+                    titleButtonFooter,
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),
@@ -145,7 +150,7 @@ class ClippingClass extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var path = Path();
-    path.lineTo(0.0, size.height - 40);
+    path.lineTo(0.0, size.height - 30);
     path.quadraticBezierTo(
       size.width / 4,
       size.height,
@@ -156,7 +161,7 @@ class ClippingClass extends CustomClipper<Path> {
       size.width - (size.width / 4),
       size.height,
       size.width,
-      size.height - 40,
+      size.height - 30,
     );
     path.lineTo(size.width, 0.0);
     path.close();
