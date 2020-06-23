@@ -16,11 +16,10 @@ class _Step3PageState extends State<Step3Page> {
       title: "When do you want to meditate?",
       percentage: 60.0,
       titleButtonFooter: "Set Reminder",
-      onPressedButtonFooter: () {},
+      onPressedButtonFooter: step3.length == 0 ? null : () {},
       child: Expanded(
         child: Column(
           mainAxisAlignment: _defineMainAxisAlignment(),
-          // color: Variables.colorPrimary,
           children: [
             Column(
               children: <Widget>[
@@ -67,41 +66,39 @@ class _Step3PageState extends State<Step3Page> {
 
   Widget _step3() {
     return Container(
-      padding: EdgeInsets.only(
+      margin: EdgeInsets.only(
         top: 40.0,
         bottom: 20.0,
         left: 20.0,
         right: 20.0,
       ),
-      child: Table(
-        children: [
-          TableRow(
-            children: [
-              _tableRowStep3(
-                "Morning",
-                "7:00 AM",
-                "assets/morning.jpg",
-              ),
-              _tableRowStep3(
-                "Mid-Day",
-                "12:00 PM",
-                "assets/mid-day.jpg",
-              ),
-              _tableRowStep3(
-                "Evening",
-                "7:00 PM",
-                "assets/evening.jpg",
-              ),
-            ],
-          ),
-        ],
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            _tableRowStep3(
+              "Morning",
+              "7:00 AM",
+              "assets/morning.jpg",
+            ),
+            _tableRowStep3(
+              "Mid-Day",
+              "12:00 PM",
+              "assets/mid-day.jpg",
+            ),
+            _tableRowStep3(
+              "Evening",
+              "7:00 PM",
+              "assets/evening.jpg",
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _tableRowStep3(String title, String time, String image) {
-    return Hero(
-      tag: title,
+    return Expanded(
       child: Container(
         padding: EdgeInsets.all(6.0),
         child: RaisedButton(

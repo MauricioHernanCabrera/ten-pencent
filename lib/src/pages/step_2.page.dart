@@ -25,55 +25,57 @@ class _Step2PageState extends State<Step2Page> {
 
   Widget _step2() {
     return Container(
-      padding: EdgeInsets.only(
+      margin: EdgeInsets.only(
         top: 40.0,
         bottom: 20.0,
         left: 20.0,
         right: 20.0,
       ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(50.0),
-      ),
-      width: double.infinity,
-      child: Table(
-        children: [
-          TableRow(
-            children: [
-              _tableRowStep2(
-                "Learn to Medicate",
-                "Learn the basics of meditation in a simple, easy, fun away.",
-                "assets/1.jpg",
-              ),
-              _tableRowStep2(
-                "Sleep Better",
-                "Let go of warries more easily, becoming calmer and more balanced.",
-                "assets/2.jpg",
-              ),
-              _tableRowStep2(
-                "Increase Focus",
-                "Become a more loving, compassionate, and respectful human.",
-                "assets/3.jpg",
-              ),
-            ],
+      child: Column(
+        children: <Widget>[
+          IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _tableRowStep2(
+                  "Learn to Medicate",
+                  "Learn the basics of meditation in a simple, easy, fun away.",
+                  "assets/1.jpg",
+                ),
+                _tableRowStep2(
+                  "Sleep Better",
+                  "Let go of warries more easily, becoming calmer and more balanced.",
+                  "assets/2.jpg",
+                ),
+                _tableRowStep2(
+                  "Increase Focus",
+                  "Become a more loving, compassionate, and respectful human.",
+                  "assets/3.jpg",
+                ),
+              ],
+            ),
           ),
-          TableRow(
-            children: [
-              _tableRowStep2(
-                "Reduce Stress",
-                "Become more productive and less distracted",
-                "assets/4.jpg",
-              ),
-              _tableRowStep2(
-                "Improve Relationships",
-                "Relax your mind and body, falling into a deep and restful sleep.",
-                "assets/5.jpg",
-              ),
-              _tableRowStep2(
-                "Be Happier",
-                "Switch your default settings from `meh` yo `pretty good, actually`.",
-                "assets/6.jpg",
-              ),
-            ],
+          IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _tableRowStep2(
+                  "Reduce Stress",
+                  "Become more productive and less distracted",
+                  "assets/4.jpg",
+                ),
+                _tableRowStep2(
+                  "Improve Relationships",
+                  "Relax your mind and body, falling into a deep and restful sleep.",
+                  "assets/5.jpg",
+                ),
+                _tableRowStep2(
+                  "Be Happier",
+                  "Switch your default settings from `meh` yo `pretty good, actually`.",
+                  "assets/6.jpg",
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -81,12 +83,11 @@ class _Step2PageState extends State<Step2Page> {
   }
 
   Widget _tableRowStep2(String title, String subtitle, String image) {
-    return Hero(
-      tag: title,
-      child: Container(
-        padding: EdgeInsets.all(6.0),
-        child: SizedBox(
-          height: 140.0,
+    return Expanded(
+      child: Hero(
+        tag: title,
+        child: Container(
+          padding: EdgeInsets.all(6.0),
           child: RaisedButton(
             shape: _buttonSelected(title),
             padding: EdgeInsets.only(top: 8.0, left: 12.0, right: 12.0),
@@ -120,12 +121,15 @@ class _Step2PageState extends State<Step2Page> {
                   ),
                 ),
                 SizedBox(
-                  height: 4.0,
+                  height: 8.0,
                 ),
                 Text(
                   title,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 11.0, fontWeight: FontWeight.w400),
+                ),
+                SizedBox(
+                  height: 4.0,
                 ),
               ],
             ),

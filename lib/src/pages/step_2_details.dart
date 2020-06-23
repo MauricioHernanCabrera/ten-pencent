@@ -22,22 +22,24 @@ class _Step2DetailsPageState extends State<Step2DetailsPage> {
         Navigator.pushNamed(context, '/step/3');
       },
       children: [
-        _cardStep2(
-          args.title,
-          args.subtitle,
-          args.image,
-        ),
-        Expanded(
-          child: Container(),
-        ),
+        Column(
+          children: [
+            _cardTitle(args),
+            _subtitle(args),
+          ],
+        )
       ],
     );
   }
 
-  Widget _cardStep2(String title, String subtitle, String image) {
-    Widget _cardTitle = Container(
-      padding:
-          EdgeInsets.only(top: 32.0, left: 32.0, right: 32.0, bottom: 20.0),
+  Widget _cardTitle(Step2Arguments args) {
+    return Container(
+      padding: EdgeInsets.only(
+        top: 32.0,
+        left: 32.0,
+        right: 32.0,
+        bottom: 20.0,
+      ),
       width: 260,
       child: RaisedButton(
         shape: RoundedRectangleBorder(
@@ -55,14 +57,14 @@ class _Step2DetailsPageState extends State<Step2DetailsPage> {
         child: Column(
           children: [
             Hero(
-              tag: title,
+              tag: args.title,
               child: Container(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(200.0),
                   child: AspectRatio(
                     aspectRatio: 1,
                     child: Image(
-                      image: AssetImage(image),
+                      image: AssetImage(args.image),
                       fit: BoxFit.cover, // use this
                     ),
                   ),
@@ -73,7 +75,7 @@ class _Step2DetailsPageState extends State<Step2DetailsPage> {
               height: 12.0,
             ),
             Text(
-              title,
+              args.title,
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400),
             ),
@@ -81,13 +83,15 @@ class _Step2DetailsPageState extends State<Step2DetailsPage> {
         ),
       ),
     );
+  }
 
-    Widget _subtitle = Container(
+  Widget _subtitle(Step2Arguments args) {
+    return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 30.0,
       ),
       child: Text(
-        subtitle,
+        args.subtitle,
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 16.0,
@@ -95,13 +99,6 @@ class _Step2DetailsPageState extends State<Step2DetailsPage> {
           color: Variables.colorGrey3,
         ),
       ),
-    );
-
-    return Column(
-      children: [
-        _cardTitle,
-        _subtitle,
-      ],
     );
   }
 }
